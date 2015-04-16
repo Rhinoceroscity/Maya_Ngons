@@ -1,0 +1,13 @@
+source "dagMenuProc.mel";
+string $selected[] = `ls -sl`;
+for ($obj in $selected)
+	{
+	polySelectConstraint -m 3;
+	print($obj+"\n");
+	string $nodeType = `nodeType $obj`;
+	if ($nodeType == "mesh" || $nodeType == "transform")
+		{
+		doMenuComponentSelection($obj, "facet");
+		polySelectConstraint -m 3 -t 8 -sz 3;
+		}
+	}
